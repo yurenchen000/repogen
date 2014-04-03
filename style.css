@@ -1,0 +1,229 @@
+@charset "utf-8";
+
+/*	Based on:
+	Less Framework 4
+	http://lessframework.com
+	by Joni Korpi
+	License: http://opensource.org/licenses/mit-license.php	*/
+
+/*	Resets
+	------	*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, 
+p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, 
+img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr, 
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, hgroup, 
+menu, footer, header, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+	display: block;
+}
+
+a img {border: 0;}
+
+
+
+/*	Typography presets
+	------------------	*/
+
+
+.gigantic {
+	font-size: 76px;
+	line-height: 84px;
+	letter-spacing: -1px;
+}
+
+
+.huge, h1 {
+	font-size: 47px;
+	line-height: 48px;
+}
+
+.large, h2 {
+	font-size: 29px;
+	line-height: 36px;
+}
+
+.bigger, h3 {
+	font-size: 25px;
+	line-height: 30px;
+}
+
+.big, h4 {
+	font-size: 18px;
+	line-height: 24px;
+    margin: 1em 0 .5em 0;
+}
+
+body {
+	font: 13px/18px Verdana, Geneva, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, th {
+	font-family: Georgia, Georgia, "Times New Roman", Times, serif;
+}
+
+.small, small {
+	font-size: 10px;
+	line-height: 16px;
+}
+
+/* Selection colors */
+
+::selection 	 	{background: rgb(188,188,158);}
+::-moz-selection 	{background: rgb(188,188,158);}
+img::selection 		{background: transparent;}
+img::-moz-selection	{background: transparent;}
+body {-webkit-tap-highlight-color: rgb(188,188,158);}
+
+body {
+	width: 896px;
+    margin: auto;
+	background: rgb(232,232,232);
+	color: rgb(60,60,60);
+	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+}
+
+/*	General Layout	*/
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -4em;
+}
+   
+#wrapper h1 { 
+	display: block;
+	background: white;
+	text-align: right;
+	font-style: italic;
+    color: #655672;
+}
+
+#header { 
+	background: black;
+	padding: 15px;
+}
+
+#header a {
+    color: white;
+    text-decoration: none;
+}
+
+#header h1 { 
+    margin-top:10px;
+    margin-left:10px;
+	font-size:64px;
+}
+
+#header h1:hover{
+	text-decoration:underline;
+	}
+
+#header h1 span{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px;
+}
+
+#content {
+	padding: 15px;
+    background: white;
+}
+
+#push { height: 4em; }
+#footer { padding: 35px; } 
+
+p {
+    margin: 5px 15px;
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: auto;
+}
+
+tr {
+    vertical-align: middle;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px #B6B6B6 solid; 
+}
+
+#mirrors tr:first-child {
+    border-top: 1px #B6B6B6 solid;
+}
+
+#mirrors td {
+    border-collapse: separate;
+}
+
+#mirrors td:first-child {
+    border-right: 20px solid white;
+}
+
+#mirrors td:nth-child(even) {
+    border-left: 20px solid white;
+}
+
+tr:nth-child(odd) {
+    background-color: #E8E8E8;
+}
+
+td, th {
+    width: 50%;
+    text-align: left;
+    padding: 0.5em;
+}
+
+th {
+    font-size: 16px;
+    border-bottom: 3px #B6B6B6 solid;
+    background-color: white;
+}
+
+/* Colors */
+
+a { color: #655672; }
+a:active, a:hover { color: #8e899d; }
+
+pre
+{
+  padding: 0 3px 2px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 12px;
+  color: #333333;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+#distribution { margin-top: 20px; }
