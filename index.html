@@ -1,129 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <meta name="description" content="Mirrors">
-        <title>sNullp's repo file generator</title>
+    <meta name="description" content="Mirrors">
+    <title>sNullp's repo file generator</title>
 
-        <link href="style.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src="howto.js" charset="utf-8"></script>
-</head>
-<body>
-        <div id="header">
-            <a href="http://mirrors.ustc.edu.cn/"><h1>mirrors<span>.ustc.edu.cn</span></h1></a>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="howto.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="header">
+      <h1><a href="http://mirrors.ustc.edu.cn/">mirrors<span>.ustc.edu.cn</span></a></h1>
+    </div>
+    <div id="wrapper">
+      <div id="content">
+        <h1 id="title">repository file generator</h1>
+        <div class="distribution">
+          <h4>Archlinux (/etc/pacman.d/mirrorlist):
+            <select id="archlinux-ip" onchange="replaceWord('archlinux-ip', 'archlinux-ipv');fnSelect('archlinux-config');">
+              <option value="mirrors6">IPv6</option>
+              <option selected="selected" value="mirrors">IPv4</option>
+            </select>
+            <select id="archlinux-type" onchange="replaceWord('archlinux-type', 'archlinux-protocol');fnSelect('archlinux-config');">
+              <option selected="selected" value="http">HTTP</option>
+              <option value="ftp">FTP</option>
+            </select>
+            <button name="Download" onclick="downloadContentFromElement('mirrorlist', 'archlinux-config')">Download</button>
+          </h4>
+          <div id="archlinux-config">
+            <pre onclick="fnSelect('archlinux-config');">
+Server = <span class="archlinux-protocol">http</span>://<span class="archlinux-ipv">mirrors</span>.ustc.edu.cn/archlinux/$repo/os/$arch</pre>
+          </div>
         </div>
-        <div id="wrapper">
-            <div id="content">
 
-                <h1 id="title">repository file generator</h1>
-
-<!--                <h4>Please select your distribution:</h4>
-                <table id="mirrors">
-                    <tbody><tr>
-                            <td><a href="#archlinux">Arch Linux</a></td>
-                            <td><a href="#centos">CentOS</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#debian">Debian</a></td>
-                            <td><a href="#ubuntu">Ubuntu</a></td>
-                        </tr>
-                </tbody></table> -->
-            <div id="distribution">
-                <h4>Archlinux (/etc/pacman.d/mirrorlist): 
-                    <select id="archlinux-ip" onchange="replaceWord('archlinux-ip', 'archlinux-ipv');fnSelect('archlinux-config');">
-                        <option value="mirrors6">IPv6</option> 
-                        <option selected="selected" value="mirrors">IPv4</option> 
-                    </select>
-                    <select id="archlinux-type" onchange="replaceWord('archlinux-type', 'archlinux-protocol');fnSelect('archlinux-config');">
-                        <option selected="selected" value="http">HTTP</option> 
-                        <option value="ftp">FTP</option> 
-                    </select>
-                    <button name="Download" onclick="downloadContentFromElement('mirrorlist', 'archlinux-config')">Download</button>
-                </h4>
-                <pre onclick="fnSelect('archlinux-config');">
-<div id="archlinux-config"> Server = <span class="archlinux-protocol">http</span>://<span class="archlinux-ipv">mirrors</span>.ustc.edu.cn/archlinux/$repo/os/$arch</div></pre>
-</div>
-
-            <div id="distribution">
-                <h4>Debian (/etc/apt/sources.list):
-                    <select id="debian-ip" onchange="replaceWord('debian-ip', 'debian-ipv');fnSelect('debian-config');">
-                        <option value="mirrors6">IPv6</option> 
-                        <option selected="selected" value="mirrors">IPv4</option> 
-                    </select>
-                    <select id="debian-type" onchange="replaceWord('debian-type', 'debian-protocol');fnSelect('debian-config');">
-                        <option selected="selected" value="http">HTTP</option> 
-                        <option value="ftp">FTP</option> 
-                    </select>
-                    <select id="debian-version" onchange="replaceWord('debian-version', 'debian-version');fnSelect('debian-config');">
-                        <option selected="selected" value="stable">stable</option> 
-                        <option value="experimental">experimental</option> 
-                        <option value="testing">testing</option> 
-                        <option value="unstable">unstable</option> 
-                        <option value="oldstable">oldstable</option> 
-                        <option value="sid">sid</option> 
-                        <option value="jessie">jessie</option> 
-                        <option value="wheezy">wheezy</option> 
-                        <option value="squeeze">squeeze</option> 
-                    </select>
-                    <button name="Download" onclick="downloadContentFromElement('sources.list', 'debian-config')">Download</button>
-                </h4>
-                <pre onclick="fnSelect('debian-config');">
-<div id="debian-config">deb <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span> main contrib non-free
+        <div class="distribution">
+          <h4>Debian (/etc/apt/sources.list):
+            <select id="debian-ip" onchange="replaceWord('debian-ip', 'debian-ipv');fnSelect('debian-config');">
+              <option value="mirrors6">IPv6</option>
+              <option selected="selected" value="mirrors">IPv4</option>
+            </select>
+            <select id="debian-type" onchange="replaceWord('debian-type', 'debian-protocol');fnSelect('debian-config');">
+              <option selected="selected" value="http">HTTP</option>
+              <option value="ftp">FTP</option>
+            </select>
+            <select id="debian-version" onchange="replaceWord('debian-version', 'debian-version');fnSelect('debian-config');">
+              <option selected="selected" value="stable">stable</option>
+              <option value="experimental">experimental</option>
+              <option value="testing">testing</option>
+              <option value="unstable">unstable</option>
+              <option value="oldstable">oldstable</option>
+              <option value="sid">sid</option>
+              <option value="jessie">jessie</option>
+              <option value="wheezy">wheezy</option>
+              <option value="squeeze">squeeze</option>
+            </select>
+            <button name="Download" onclick="downloadContentFromElement('sources.list', 'debian-config')">Download</button>
+          </h4>
+          <div id="debian-config">
+            <pre onclick="fnSelect('debian-config');">
+deb <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span> main contrib non-free
 deb-src <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span> main contrib non-free
 deb <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span>-proposed-updates main contrib non-free
 deb-src <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span>-proposed-updates main contrib non-free
 deb <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span>-updates main contrib non-free
-deb-src <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span>-updates main contrib non-free</div></pre>
-            </div>
+deb-src <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span>-updates main contrib non-free</pre>
+          </div>
+        </div>
 
-            <div id="distribution">
-                <h4>ubuntu (/etc/apt/sources.list):
-                    <select id="ubuntu-ip" onchange="replaceWord('ubuntu-ip', 'ubuntu-ipv');fnSelect('ubuntu-config');">
-                        <option value="mirrors6">IPv6</option> 
-                        <option selected="selected" value="mirrors">IPv4</option> 
-                    </select>
-                    <select id="ubuntu-type" onchange="replaceWord('ubuntu-type', 'ubuntu-protocol');fnSelect('ubuntu-config');">
-                        <option selected="selected" value="http">HTTP</option> 
-                        <option value="ftp">FTP</option> 
-                    </select>
-                    <select id="ubuntu-version" onchange="replaceWord('ubuntu-version', 'ubuntu-version');fnSelect('ubuntu-config');">
-                        <option value="xenial">Xenial Xerus (16.04)</option>
-                        <option value="wily">Wily Werewolf (15.10)</option>
-                        <option value="vivid">Vivid Vervet (15.04)</option>
-                        <option value="utopic">Utopic Unicorn (14.10)</option>
-                        <option selected="selected" value="trusty">Trusty Tahr (14.04)</option>
-                        <option value="saucy">Saucy Salamander (13.10)</option>
-                        <option value="raring">Raring Ringtail (13.04)</option>
-                        <option value="quantal">Quantal (12.10)</option> 
-                        <option value="precise">Precise (12.04)</option> 
-                        <option value="oneiric">Oneiric (11.10)</option> 
-                        <option value="natty">Natty (11.04)</option> 
-                        <option value="maverick">Maverick (10.10)</option> 
-                        <option value="lucid">Lucid (10.04)</option> 
-                        <option value="karmic">Karmic (09.10)</option> 
-                        <option value="jaunty">Jaunty (09.04)</option> 
-                    </select>
-                    <button name="Download" onclick="downloadContentFromElement('sources.list', 'ubuntu-config')">Download</button>
-                </h4>
-                <pre onclick="fnSelect('ubuntu-config');">
-<div id="ubuntu-config">  deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span> main restricted universe multiverse
-  deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-security main restricted universe multiverse
-  deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-updates main restricted universe multiverse
-  deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-proposed main restricted universe multiverse
-  deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-backports main restricted universe multiverse
-  deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span> main restricted universe multiverse
-  deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-security main restricted universe multiverse
-  deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-updates main restricted universe multiverse
-  deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-proposed main restricted universe multiverse
-  deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-backports main restricted universe multiverse</div></pre>
-            </div>
-        </div><!--content-->
-        <p>Made by <a href="http://home.ustc.edu.cn/~halgu/">sNullp</a> <br>Send mirror related questions to mirrors@ustc.edu.cn.</p>
+        <div class="distribution">
+          <h4>Ubuntu (/etc/apt/sources.list):
+            <select id="ubuntu-ip" onchange="replaceWord('ubuntu-ip', 'ubuntu-ipv');fnSelect('ubuntu-config');">
+              <option value="mirrors6">IPv6</option>
+              <option selected="selected" value="mirrors">IPv4</option>
+            </select>
+            <select id="ubuntu-type" onchange="replaceWord('ubuntu-type', 'ubuntu-protocol');fnSelect('ubuntu-config');">
+              <option selected="selected" value="http">HTTP</option>
+              <option value="ftp">FTP</option>
+            </select>
+            <select id="ubuntu-version" onchange="replaceWord('ubuntu-version', 'ubuntu-version');fnSelect('ubuntu-config');">
+              <option value="xenial">Xenial Xerus (16.04)</option>
+              <option value="wily">Wily Werewolf (15.10)</option>
+              <option value="vivid">Vivid Vervet (15.04)</option>
+              <option value="utopic">Utopic Unicorn (14.10)</option>
+              <option selected="selected" value="trusty">Trusty Tahr (14.04)</option>
+              <option value="saucy">Saucy Salamander (13.10)</option>
+              <option value="raring">Raring Ringtail (13.04)</option>
+              <option value="quantal">Quantal (12.10)</option>
+              <option value="precise">Precise (12.04)</option>
+              <option value="oneiric">Oneiric (11.10)</option>
+              <option value="natty">Natty (11.04)</option>
+              <option value="maverick">Maverick (10.10)</option>
+              <option value="lucid">Lucid (10.04)</option>
+              <option value="karmic">Karmic (09.10)</option>
+              <option value="jaunty">Jaunty (09.04)</option>
+            </select>
+            <button name="Download" onclick="downloadContentFromElement('sources.list', 'ubuntu-config')">Download</button>
+          </h4>
+          <div id="ubuntu-config">
+            <pre onclick="fnSelect('ubuntu-config');">
+deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span> main restricted universe multiverse
+deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-security main restricted universe multiverse
+deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-updates main restricted universe multiverse
+deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-proposed main restricted universe multiverse
+deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-backports main restricted universe multiverse
+deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span> main restricted universe multiverse
+deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-security main restricted universe multiverse
+deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-updates main restricted universe multiverse
+deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-proposed main restricted universe multiverse
+deb-src <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span>-backports main restricted universe multiverse</pre>
+          </div>
+        </div>
+      </div><!--content-->
+      <p>Made by <a href="http://home.ustc.edu.cn/~halgu/">sNullp</a> <br>Send mirror related questions to mirrors@ustc.edu.cn.</p>
 
     </div> <!--wrapper-->
     <div id="footer"></div>
 
-</body>
+  </body>
 </html>
 
