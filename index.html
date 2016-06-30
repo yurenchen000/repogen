@@ -39,7 +39,8 @@
                         <option selected="selected" value="http">HTTP</option> 
                         <option value="ftp">FTP</option> 
                     </select>
-</h4>
+                    <button name="Download" onclick="downloadContentFromElement('mirrorlist', 'archlinux-config')">Download</button>
+                </h4>
                 <pre onclick="fnSelect('archlinux-config');">
 <div id="archlinux-config"> Server = <span class="archlinux-protocol">http</span>://<span class="archlinux-ipv">mirrors</span>.ustc.edu.cn/archlinux/$repo/os/$arch</div></pre>
 </div>
@@ -65,6 +66,7 @@
                         <option value="wheezy">wheezy</option> 
                         <option value="squeeze">squeeze</option> 
                     </select>
+                    <button name="Download" onclick="downloadContentFromElement('sources.list', 'debian-config')">Download</button>
                 </h4>
                 <pre onclick="fnSelect('debian-config');">
 <div id="debian-config">deb <span class="debian-protocol">http</span>://<span class="debian-ipv">mirrors</span>.ustc.edu.cn/debian <span class="debian-version">stable</span> main contrib non-free
@@ -102,6 +104,7 @@ deb-src <span class="debian-protocol">http</span>://<span class="debian-ipv">mir
                         <option value="karmic">Karmic (09.10)</option> 
                         <option value="jaunty">Jaunty (09.04)</option> 
                     </select>
+                    <button name="Download" onclick="downloadContentFromElement('sources.list', 'ubuntu-config')">Download</button>
                 </h4>
                 <pre onclick="fnSelect('ubuntu-config');">
 <div id="ubuntu-config">  deb <span class="ubuntu-protocol">http</span>://<span class="ubuntu-ipv">mirrors</span>.ustc.edu.cn/ubuntu/ <span class="ubuntu-version">trusty</span> main restricted universe multiverse

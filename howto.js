@@ -56,3 +56,25 @@ function replaceWord( distVer, ver )
    vers[i].innerHTML = version;
   }
 }
+
+// works for HTML5 ready browsers
+// code from: http://stackoverflow.com/a/18197341
+function downloadContent(filename, text)
+{
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
+// code reference: http://stackoverflow.com/a/6743966
+function downloadContentFromElement(filename, objId)
+{
+  var element = document.getElementById(objId);
+  // innerText for IE, textContent for other browsers
+  var text = element.innerText || element.textContent;
+  downloadContent(filename, text)
+}
