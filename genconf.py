@@ -26,8 +26,12 @@ import renderers
 CURDIR = path.dirname(path.realpath(__file__))
 TPLDIR = path.join(CURDIR, 'templates')
 ENV = Environment(loader=FileSystemLoader(TPLDIR))
-# DISTROS = ['ubuntu', 'debian']
-DISTROS = ['ubuntu']
+DISTROS = ['ubuntu', 'debian', 'archlinux']
+
+def get_archlinux_releases():
+    return ''
+def get_debian_releases():
+    return ''
 
 def get_ubuntu_releases():
     url = 'https://wiki.ubuntu.com/Releases'
@@ -58,10 +62,13 @@ def get_ubuntu_releases():
     return d
 
 def main(tpldir):
+    # Fetch latest releases for each distros
     releases = dict()
     get = globals().get
-    err = True
-    with open('releases.json.new', 'w') as fout:
+    rel_info_tmp = path.join(CURDIR, 'releases.json.new')
+    rel_info = path.join(CURDIR, 'releases.json')
+
+    with open(rel_info_tmp, 'w') as fout:
         for dist in DISTROS:
             f = get('get_{}_releases'.format(dist), None)
             # Not callable
@@ -70,26 +77,24 @@ def main(tpldir):
                 continue
             releases[dist] = f()
             if releases[dist] is None:
+                os.remove(rel_info_tmp)
                 raise ValueError
-        err = False
         json.dump(releases, fout, indent=4)
 
-    if not err:
-        shutil.copyfile('releases.json.new', 'releases.json')
-    os.remove('releases.json.new')
+    shutil.copyfile(rel_info_tmp, rel_info)
+    os.remove(rel_info_tmp)
 
+    # Generate configuration for each distros
     get = renderers.__dict__.get
-    for f in glob.glob(path.join(tpldir, '*.jnj')):
-        src = path.basename(f)
-        name = path.splitext(src)[0]
+    for dist in DISTROS:
         try:
-            tpl = ENV.get_template(src)
+            tpl = ENV.get_template('{}.jnj'.format(dist))
         except:
             # Template not found
             traceback.print_exc()
             continue
 
-        gen_func = get('{}_conf'.format(name), None)
+        gen_func = get('{}_conf'.format(dist), None)
 
         try:
             gen_func(tpl.render)
