@@ -29,13 +29,25 @@ def ubuntu_conf(render):
     take_ver = lambda xs: (x[1] for x in xs)
     info = itertools.chain(take_ver(rel.get('Current')), take_ver(rel.get('Future')))
     for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], info):
-        save('ubuntu', proto, ipv, vers, content=render(PROTO=proto, IP='' if ipv == '4' else ipv, VERSION=vers))
+        save('ubuntu',
+             proto, ipv, vers,
+             content=render(PROTO=proto, VERSION=vers,
+                            URL='mirrors.ustc.edu.cn' if ipv == '4' else 'mirrors6.ustc.edu.cn'))
+
+    info = take_ver(rel.get('End_of_life'))
+    for vers in info:
+        save('ubuntu',
+             'http', '4', vers,
+             content=render(PROTO='http', VERSION=vers, URL='old-releases.ubuntu.com'))
+
 
 def debian_conf(render):
     for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], ['sid', 'stretch', 'jessie', 'wheezy']):
-        save('debian', proto, ipv, vers, content=render(PROTO=proto, IP='' if ipv == '4' else ipv, VERSION=vers))
+        save('debian', proto, ipv, vers,
+             content=render(PROTO=proto, IP='' if ipv == '4' else ipv, VERSION=vers))
 
 def archlinux_conf(render):
     for proto, ipv in itertools.product(PROTOCOLS, ['4', '6']):
-        save('archlinux', proto, ipv, content=render(PROTO=proto, IP='' if ipv == '4' else ipv))
+        save('archlinux', proto, ipv,
+             content=render(PROTO=proto, IP='' if ipv == '4' else ipv))
 
