@@ -8,7 +8,6 @@ import json
 import logging
 import shutil
 from os import path
-import glob
 import traceback
 
 import requests
