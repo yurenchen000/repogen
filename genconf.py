@@ -9,6 +9,7 @@ import logging
 import shutil
 from os import path
 import traceback
+from distutils.version import StrictVersion
 
 import requests
 from bs4 import BeautifulSoup
@@ -101,6 +102,17 @@ def main(tpldir):
             logging.error('Rendering %s:', f)
             # Not callable
             traceback.print_exc()
+
+    # Generate index.html
+    with open(path.join(CURDIR, 'index.html'), 'w') as fout,\
+         open(path.join(CURDIR, 'releases.json'), 'r') as fin:
+        releases = json.load(fin).get('ubuntu')
+        tpl = ENV.get_template('index.html')
+        info = list((name, vers, False) for vers, name, _ in releases.get('Future'))
+        info.extend(list((name, vers, False) for vers, name, _ in releases.get('Current')))
+        info.extend(list((name, vers, True) for vers, name, _ in releases.get('End_of_life')))
+        info.sort(key=lambda x: StrictVersion(x[1]), reverse=True)
+        fout.write(tpl.render(info=info))
 
 if __name__ == '__main__':
     if os.getenv('DEBUG'):

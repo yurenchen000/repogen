@@ -1,4 +1,12 @@
-
+{% macro option(name, vers, eol, selected=False) -%}
+{% if eol %}
+<option class="end-of-life" value="{{ name }}">{{ name }} ({{ vers }})</option>
+{% elif selected %}
+<option selected="true" value="{{ name }}">{{ name }} ({{ vers }})</option>
+{% else %}
+<option value="{{ name }}">{{ name }} ({{ vers }})</option>
+{% endif %}
+{%- endmacro %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,73 +82,9 @@
               <option value="6">IPv6</option>
             </select>
             <select>
-              
-<option selected="true" value="yakkety">yakkety (16.10)</option>
-
-<option value="xenial">xenial (16.04)</option>
-
-<option value="wily">wily (15.10)</option>
-
-<option class="end-of-life" value="vivid">vivid (15.04)</option>
-
-<option class="end-of-life" value="utopic">utopic (14.10)</option>
-
-<option value="trusty">trusty (14.04)</option>
-
-<option class="end-of-life" value="saucy">saucy (13.10)</option>
-
-<option class="end-of-life" value="raring">raring (13.04)</option>
-
-<option class="end-of-life" value="quantal">quantal (12.10)</option>
-
-<option value="precise">precise (12.04)</option>
-
-<option class="end-of-life" value="oneiric">oneiric (11.10)</option>
-
-<option class="end-of-life" value="natty">natty (11.04)</option>
-
-<option class="end-of-life" value="maverick">maverick (10.10)</option>
-
-<option class="end-of-life" value="lucid">lucid (10.04)</option>
-
-<option class="end-of-life" value="karmic">karmic (9.10)</option>
-
-<option class="end-of-life" value="jaunty">jaunty (9.04)</option>
-
-<option class="end-of-life" value="intrepid">intrepid (8.10)</option>
-
-<option class="end-of-life" value="hardy">hardy (8.04)</option>
-
-<option class="end-of-life" value="gutsy">gutsy (7.10)</option>
-
-<option class="end-of-life" value="feisty">feisty (7.04)</option>
-
-<option class="end-of-life" value="edgy">edgy (6.10)</option>
-
-<option class="end-of-life" value="dapper">dapper (6.06)</option>
-
-<option class="end-of-life" value="breezy">breezy (5.10)</option>
-
-<option class="end-of-life" value="hoary">hoary (5.04)</option>
-
-<option class="end-of-life" value="warty">warty (4.10)</option>
-
-              <!--<option value="yakkety">Yakkety Yak (16.10, future)</option>
-              <option selected="selected" value="xenial">Xenial Xerus (16.04, LTS)</option>
-              <option value="wily">Wily Werewolf (15.10)</option>
-              <option value="vivid">Vivid Vervet (15.04)</option>
-              <option disabled=true value="utopic">Utopic Unicorn (14.10, end of life)</option>
-              <option value="trusty">Trusty Tahr (14.04, LTS)</option>
-              <option disabled=true value="saucy">Saucy Salamander (13.10, end of life)</option>
-              <option disabled=true value="raring">Raring Ringtail (13.04, end of life)</option>
-              <option disabled=true value="quantal">Quantal (12.10, end of life)</option>
-              <option value="precise">Precise (12.04, LTS)</option>
-              <option disabled=true value="oneiric">Oneiric (11.10, end of life)</option>
-              <option disabled=true value="natty">Natty (11.04, end of life)</option>
-              <option disabled=true value="maverick">Maverick (10.10, end of life)</option>
-              <option value="lucid">Lucid (10.04, LTS)</option>
-              <option disabled=true value="karmic">Karmic (09.10, end of life)</option>
-              <option disabled=true value="jaunty">Jaunty (09.04, end of life)</option>-->
+              {% for NAME, VERS, EOL in info -%}
+              {{ option(NAME, VERS, EOL, loop.first) }}
+              {%- endfor %}
             </select>
             <button name="Download">Download</button>
           </h4>
@@ -151,6 +95,6 @@
       </div><!--content-->
       <p>Made by <a href="http://home.ustc.edu.cn/~halgu/">sNullp</a> <br>Send mirror related questions to mirrors@ustc.edu.cn.</p>
     </div> <!--wrapper-->
-    <div id="footer"></div>
   </body>
 </html>
+

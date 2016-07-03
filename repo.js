@@ -15,29 +15,35 @@ function toArray(arr) {
   return Array.prototype.slice.call(arr);
 }
 
+function getInfo(dist) {
+  var selector = '#' + dist + ' select';
+  return [dist].concat(toArray($(selector)).map(function(e) {
+    return e.options[e.selectedIndex].value;
+  }));
+}
+
 function ready() {
   var distros = ['archlinux', 'debian', 'ubuntu'];
   distros.forEach(function(dist) {
-    var selector = '#' + dist + ' select';
-    var info = [dist].concat(toArray($(selector)).map(function(e) {
-      return e.options[e.selectedIndex].value;
-    }));
-    getCfg(info, function(err, data) {
+    getCfg(getInfo(dist), function(err, data) {
       $('#' + dist + ' pre').textContent = data;
     });
 
     $('#' + dist + ' button').onclick = function(evt) {
       evt.preventDefault();
-      var info = [dist].concat(toArray($(selector)).map(function(e) {
-        return e.options[e.selectedIndex].value;
-      }));
       var ele = document.createElement('a');
-      ele.setAttribute('href', buildURL(info));
+      ele.setAttribute('href', buildURL(getInfo(dist)));
       ele.setAttribute('download', 'sources.list');
       document.body.appendChild(ele);
       ele.click();
       document.body.removeChild(ele);
     };
+
+    $('#' + dist).onchange = function() {
+      getCfg(getInfo(dist), function(err, data) {
+        $('#' + dist + ' pre').textContent = data;
+      });
+    }
   });
 }
 
