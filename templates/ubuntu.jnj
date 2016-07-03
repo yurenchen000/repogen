@@ -1,0 +1,15 @@
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }} main restricted universe multiverse
+deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }} main restricted universe multiverse
+
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-security main restricted universe multiverse
+deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-security main restricted universe multiverse
+
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-updates main restricted universe multiverse
+deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-updates main restricted universe multiverse
+
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-backports main restricted universe multiverse
+deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-backports main restricted universe multiverse
+
+# Not recommended
+# deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-proposed main restricted universe multiverse
+# deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/ubuntu/ {{ VERSION }}-proposed main restricted universe multiverse

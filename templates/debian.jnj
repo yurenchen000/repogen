@@ -1,0 +1,13 @@
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free
+deb-src {{ PROTO }}://mirrors.ustc.edu.cn{{ IP }}/debian/ {{ VERSION }} main contrib non-free
+
+{% if VERSION != 'sid' -%}
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
+deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
+
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
+deb-src {{ PROTO }}://mirrprs{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
+
+deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
+deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
+{% endif %}
