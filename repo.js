@@ -32,7 +32,7 @@ function ready() {
     var dist = evt.target.className;
     var ele = document.createElement('a');
     ele.setAttribute('href', buildURL(getInfo(dist)));
-    ele.setAttribute('download', 'sources.list');
+    ele.setAttribute('download', evt.target.name);
     document.body.appendChild(ele);
     ele.click();
     document.body.removeChild(ele);

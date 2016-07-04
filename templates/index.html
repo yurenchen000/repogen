@@ -38,7 +38,7 @@
               <option selected="selected" value="4">IPv4</option>
               <option value="6">IPv6</option>
             </select>
-            <button class="archlinux">Download</button>
+            <button name="mirrorlist" class="archlinux">Download</button>
           </h4>
           <div><p id="archlinux-warn"></p></div>
           <div><pre class="archlinux"></pre></div>
@@ -61,7 +61,7 @@
               <option value="stretch">stretch (testing)</option>
               <option value="sid">sid (unstable)</option>
             </select>
-            <button class="debian">Download</button>
+            <button name="sources.list" class="debian">Download</button>
           </h4>
           <div><p id="debian-warn"></p></div>
           <div><pre class="debian"></pre></div>
@@ -83,7 +83,7 @@
               {{ option(NAME, VERS, EOL, loop.first) }}
               {%- endfor %}
             </select>
-            <button class="ubuntu">Download</button>
+            <button name="sources.list" class="ubuntu">Download</button>
           </h4>
           <div><p style="" id="ubuntu-warn"></p></div>
           <div><pre class="ubuntu"></pre></div>
