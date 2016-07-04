@@ -24,37 +24,87 @@ function getInfo(dist) {
 
 function ready() {
   var distros = ['archlinux', 'debian', 'ubuntu'];
-  distros.forEach(function(dist) {
+
+  // Download cfg
+  $('#content').onclick = function(evt) {
+    if (evt.target.tagName !== 'BUTTON') return;
+    evt.preventDefault();
+    var dist = evt.target.className;
+    var ele = document.createElement('a');
+    ele.setAttribute('href', buildURL(getInfo(dist)));
+    ele.setAttribute('download', 'sources.list');
+    document.body.appendChild(ele);
+    ele.click();
+    document.body.removeChild(ele);
+  }
+
+  // Change cfg
+  $('#content').onchange = function(evt) {
+    var dist = evt.target.className;
+    var warn = $('#' + dist + '-warn');
     getCfg(getInfo(dist), function(err, data) {
+      if (err) {
+        warn.style.display = '';
+        warn.style.color = 'red';
+        warn.textContent = err.toString();
+      } else {
+        var select;
+        switch (dist) {
+          case 'ubuntu':
+            select = $('select.ubuntu')[2];
+            if (select.options[select.selectedIndex].className === 'end-of-life') {
+              warn.style.display = '';
+              warn.style.color = 'red';
+              warn.textContent = 'Warn: You have selected an End-of-life releases. Use it at your own risk';
+            } else {
+              warn.style.display = 'none';
+            }
+            break;
+
+          case 'debian':
+            select = $('select.debian')[0];
+            if (select.options[select.selectedIndex].value === 'https') {
+              warn.style.display = '';
+              warn.textContent = 'Tips: Remember to install package <apt-transport-https>';
+            } else {
+              warn.style.display = 'none';
+            }
+            break;
+
+          default:
+            warn.style.display = 'none';
+        }
+      }
+      $('pre.' + dist).textContent = data;
+    });
+  }
+
+  distros.forEach(function(dist) {
+    // Initialize
+    getCfg(getInfo(dist), function(err, data) {
+      var warn = $('#' + dist + '-warn');
+      if (err) {
+        warn.style.display = '';
+        warn.textContent = err.toString();
+      } else {
+        warn.style.display = 'none';
+      }
       $('#' + dist + ' pre').textContent = data;
     });
 
-    $('#' + dist + ' button').onclick = function(evt) {
-      evt.preventDefault();
-      var ele = document.createElement('a');
-      ele.setAttribute('href', buildURL(getInfo(dist)));
-      ele.setAttribute('download', 'sources.list');
-      document.body.appendChild(ele);
-      ele.click();
-      document.body.removeChild(ele);
-    };
-
-    $('#' + dist).onchange = function() {
-      getCfg(getInfo(dist), function(err, data) {
-        $('#' + dist + ' pre').textContent = data;
-      });
-    }
   });
 }
 
 function getCfg(info, cb) {
   var url = buildURL(info);
   var xhr = new XMLHttpRequest();
+  xhr.timeout = 5000;
+  xhr.responseType = 'text';
   xhr.onload = function() {
     if (xhr.status == 200) {
       cb(null, xhr.responseText.toString())
     } else {
-      cb(new Error('Unknown Error'))
+      cb(new Error(xhr.statusText))
     }
   };
   xhr.open('GET', url, true); // async
