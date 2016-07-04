@@ -1,0 +1,4 @@
+beautifulsoup4>=4.4
+requests>=2.10
+jinja2>=2.8
+lxml>=3.4.4
