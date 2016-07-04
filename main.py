@@ -13,11 +13,7 @@ from distutils.version import StrictVersion
 
 import requests
 from bs4 import BeautifulSoup
-try:
-    import lxml
-    get_soup = lambda c: BeautifulSoup(c, 'lxml')
-except ImportError:
-    get_soup = lambda c: BeautifulSoup(c, 'html.parser')
+get_soup = lambda c: BeautifulSoup(c, 'lxml')
 
 from jinja2 import FileSystemLoader, Environment
 
