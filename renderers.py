@@ -35,10 +35,12 @@ def ubuntu_conf(render):
                             URL='mirrors.ustc.edu.cn' if ipv == '4' else 'mirrors6.ustc.edu.cn'))
 
     info = take_ver(rel.get('End_of_life'))
-    for vers in info:
+    for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], info):
         save('ubuntu',
-             'http', '4', vers,
-             content=render(PROTO='http', VERSION=vers, URL='old-releases.ubuntu.com'))
+             proto, ipv, vers,
+             content=render(PROTO=proto, VERSION=vers,
+                            URL='mirrors.ustc.edu.cn/ubuntu-old-releases' if ipv == '4'
+                            else 'mirrors6.ustc.edu.cn/ubuntu-old-releases'))
 
 
 def debian_conf(render):
