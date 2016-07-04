@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% macro option(name, vers, eol, selected=False) -%}
+  {% if eol %}
+  <option class="end-of-life" value="{{ name }}">{{ name }} ({{ vers }})</option>
+  {% elif selected %}
+  <option selected="true" value="{{ name }}">{{ name }} ({{ vers }})</option>
+  {% else %}
+  <option value="{{ name }}">{{ name }} ({{ vers }})</option>
+  {% endif %}
+  {%- endmacro %}
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="description" content="Mirrors">
+    <title>LUG's repo file generator</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="repo.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="header">
+      <h1><a href="http://mirrors.ustc.edu.cn/">mirrors<span>.ustc.edu.cn</span></a></h1>
+    </div>
+    <div id="wrapper">
+      <div id="content">
+        <h1 id="title">repository file generator</h1>
+
+        <div class="distribution" id="archlinux">
+          <h4>Archlinux (/etc/pacman.d/mirrorlist):
+            <select class="archlinux">
+              <option selected="selected" value="http">HTTP</option>
+              <option value="https">HTTPS</option>
+              <option value="ftp">FTP</option>
+            </select>
+            <select class="archlinux">
+              <option selected="selected" value="4">IPv4</option>
+              <option value="6">IPv6</option>
+            </select>
+            <button name="mirrorlist" class="archlinux">Download</button>
+          </h4>
+          <div><p id="archlinux-warn"></p></div>
+          <div><pre class="archlinux"></pre></div>
+        </div>
+
+        <div class="distribution" id="debian">
+          <h4>Debian (/etc/apt/sources.list):
+            <select class="debian">
+              <option selected="selected" value="http">HTTP</option>
+              <option value="https">HTTPS</option>
+              <option value="ftp">FTP</option>
+            </select>
+            <select class="debian">
+              <option selected="selected" value="4">IPv4</option>
+              <option value="6">IPv6</option>
+            </select>
+            <select class="debian">
+              <option selected="selected" value="jessie">jessie (stable)</option>
+              <option value="wheezy">wheezy (oldstable)</option>
+              <option value="stretch">stretch (testing)</option>
+              <option value="sid">sid (unstable)</option>
+            </select>
+            <button name="sources.list" class="debian">Download</button>
+          </h4>
+          <div><p id="debian-warn"></p></div>
+          <div><pre class="debian"></pre></div>
+        </div>
+
+        <div class="distribution" id="ubuntu">
+          <h4>Ubuntu (/etc/apt/sources.list):
+            <select class="ubuntu">
+              <option selected="selected" value="http">HTTP</option>
+              <option value="https">HTTPS</option>
+              <option value="ftp">FTP</option>
+            </select>
+            <select class="ubuntu">
+              <option selected="selected" value="4">IPv4</option>
+              <option value="6">IPv6</option>
+            </select>
+            <select class="ubuntu">
+              {% for NAME, VERS, EOL in info -%}
+              {{ option(NAME, VERS, EOL, loop.first) }}
+              {%- endfor %}
+            </select>
+            <button name="sources.list" class="ubuntu">Download</button>
+          </h4>
+          <div><p style="" id="ubuntu-warn"></p></div>
+          <div><pre class="ubuntu"></pre></div>
+        </div>
+      </div><!--content-->
+      <p>Made by <a href="http://home.ustc.edu.cn/~halgu/">sNullp</a></p>
+      <p>Collaborator: @ZhangCheng, <a href="https://github.com/knight42">@Knight</a></p>
+      <p>Send mirror related questions to mirrors@ustc.edu.cn.</p>
+    </div> <!--wrapper-->
+  </body>
+</html>
+

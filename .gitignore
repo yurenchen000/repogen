@@ -1,0 +1,9 @@
+*.swp
+*.[oa]
+*.py[co]
+*~
+*.bac
+__pycache__/
+conf
+releases.json
+index.html
