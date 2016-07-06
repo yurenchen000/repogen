@@ -6,6 +6,7 @@ README
 Debian/Ubuntu:
 
 ```
-# apt-get install python3-dev python-dev libxml2-dev libxslt1-dev zlib1g-dev
-$ pip install -r requirements.txt
+# apt-get install python3-lxml python3-bs4 python3-jinja2 python3-requests
+// $ pip install -r requirements.txt
+$ python3 main.py
 ```
