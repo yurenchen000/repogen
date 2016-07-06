@@ -1,2 +1,2 @@
-Server = {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 

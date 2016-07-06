@@ -1,12 +1,12 @@
-deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free
-deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free
 {% if VERSION != 'sid' %}
-deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
-deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
-
-deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
-deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
-
-deb {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
-deb-src {{ PROTO }}://mirrors{{ IP }}.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
-{%- endif %}
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
+{% if VERSION != 'stretch' %}
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
+{% endif %}
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
+{% endif %}
