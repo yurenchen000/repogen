@@ -86,13 +86,18 @@ function ready() {
       if (err) {
         warn.style.display = '';
         warn.textContent = err.toString();
-      } else {
-        warn.style.display = 'none';
       }
       $('#' + dist + ' pre').textContent = data;
     });
 
   });
+
+  var select = $('select.debian')[0];
+  if (select.options[select.selectedIndex].value === 'https') {
+    var warn = $('#debian-warn');
+    warn.style.display = '';
+    warn.textContent = 'Tips: Remember to install package <apt-transport-https>';
+  }
 }
 
 function getCfg(info, cb) {

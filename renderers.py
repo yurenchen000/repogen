@@ -32,7 +32,7 @@ def ubuntu_conf(render):
         save('ubuntu',
              proto, ipv, vers,
              content=render(PROTO=proto, VERSION=vers,
-                            URL='mirrors.ustc.edu.cn' if ipv == '4' else 'mirrors6.ustc.edu.cn'))
+                            URL='mirrors.ustc.edu.cn' if ipv == '4' else 'ipv6.mirrors.ustc.edu.cn'))
 
     info = take_ver(rel.get('End_of_life'))
     for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], info):
@@ -40,16 +40,16 @@ def ubuntu_conf(render):
              proto, ipv, vers,
              content=render(PROTO=proto, VERSION=vers,
                             URL='mirrors.ustc.edu.cn/ubuntu-old-releases' if ipv == '4'
-                            else 'mirrors6.ustc.edu.cn/ubuntu-old-releases'))
+                            else 'ipv6.mirrors.ustc.edu.cn/ubuntu-old-releases'))
 
 
 def debian_conf(render):
     for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], ['sid', 'stretch', 'jessie', 'wheezy']):
         save('debian', proto, ipv, vers,
-             content=render(PROTO=proto, IP='' if ipv == '4' else ipv, VERSION=vers))
+             content=render(PROTO=proto, IP='' if ipv == '4' else 'ipv6.', VERSION=vers))
 
 def archlinux_conf(render):
     for proto, ipv in itertools.product(PROTOCOLS, ['4', '6']):
         save('archlinux', proto, ipv,
-             content=render(PROTO=proto, IP='' if ipv == '4' else ipv))
+             content=render(PROTO=proto, IP='' if ipv == '4' else 'ipv6.'))
 
