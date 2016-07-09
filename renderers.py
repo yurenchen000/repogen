@@ -21,7 +21,8 @@ def save(*args, content):
 
 def ubuntu_conf(render):
     meta = dict()
-    with open('releases.json', 'r') as fin:
+    meta_file = path.join(CURDIR, 'releases.json')
+    with open(meta_file, 'r') as fin:
         meta = json.load(fin)
     if meta.get('ubuntu', None) is None:
         raise ValueError
