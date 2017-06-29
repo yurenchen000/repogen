@@ -45,7 +45,7 @@ def ubuntu_conf(render):
 
 
 def debian_conf(render):
-    for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], ['sid', 'stretch', 'jessie', 'wheezy']):
+    for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], ['sid', 'stretch', 'jessie', 'wheezy', 'buster']):
         save('debian', proto, ipv, vers,
              content=render(PROTO=proto, IP='' if ipv == '4' else 'ipv6.', VERSION=vers))
 
