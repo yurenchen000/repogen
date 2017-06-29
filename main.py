@@ -37,7 +37,7 @@ def get_ubuntu_releases():
         res = requests.get(url, timeout=4)
     except:
         return None
-    d = dict(Current=[], Future=[], End_of_life=[])
+    d = dict(Current=[], Future=[], End_of_Life=[])
     soup = get_soup(res.content)
     for k in d.keys():
         trs = soup.find(id=k).find_next_sibling('div').select('tr')[1:]
@@ -106,7 +106,7 @@ def main(tpldir):
         tpl = ENV.get_template('index.html')
         info = list((name, vers, False) for vers, name, _ in releases.get('Future'))
         info.extend(list((name, vers, False) for vers, name, _ in releases.get('Current')))
-        info.extend(list((name, vers, True) for vers, name, _ in releases.get('End_of_life')))
+        info.extend(list((name, vers, True) for vers, name, _ in releases.get('End_of_Life')))
         info.sort(key=lambda x: StrictVersion(x[1]), reverse=True)
         fout.write(tpl.render(info=info))
 

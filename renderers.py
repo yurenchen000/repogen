@@ -35,7 +35,7 @@ def ubuntu_conf(render):
              content=render(PROTO=proto, VERSION=vers,
                             URL='mirrors.ustc.edu.cn' if ipv == '4' else 'ipv6.mirrors.ustc.edu.cn'))
 
-    info = take_ver(rel.get('End_of_life'))
+    info = take_ver(rel.get('End_of_Life'))
     for proto, ipv, vers in itertools.product(PROTOCOLS, ['4', '6'], info):
         save('ubuntu',
              proto, ipv, vers,
