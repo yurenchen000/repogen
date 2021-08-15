@@ -3,10 +3,13 @@ deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }} main con
 {% if VERSION != 'sid' %}
 deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
 deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
-{% if VERSION != 'buster' %}
+{% if VERSION != 'bookworm' %}
 deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
 deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
-{% endif %}
+{% endif %}{% if VERSION != 'bullseye' and VERSION != 'bookworm' %}
 deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
 deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
-{% endif %}
+{% else %}
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}-security main contrib non-free
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}-security main contrib non-free
+{% endif %}{% endif %}

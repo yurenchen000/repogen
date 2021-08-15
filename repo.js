@@ -63,7 +63,9 @@ function ready() {
 
           case 'debian':
             select = $('select.debian')[0];
-            if (select.options[select.selectedIndex].value === 'https') {
+            codename = $('select.debian')[2];
+            codename = codename.options[codename.selectedIndex].value;
+            if (select.options[select.selectedIndex].value === 'https' && codename === 'stretch') {
               warn.style.display = '';
               warn.textContent = 'Tips: Remember to install package <apt-transport-https>';
             } else {
