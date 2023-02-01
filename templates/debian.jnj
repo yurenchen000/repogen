@@ -1,15 +1,15 @@
-deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free
-deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }} main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
 {% if VERSION != 'sid' %}
-deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
-deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-updates main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
 {% if VERSION != 'bookworm' %}
-deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
-deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian/ {{ VERSION }}-backports main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
 {% endif %}{% if VERSION != 'bullseye' and VERSION != 'bookworm' %}
-deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
-deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}/updates main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
 {% else %}
-deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}-security main contrib non-free
-deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}-security main contrib non-free
+deb {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}-security main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
+deb-src {{ PROTO }}://{{ IP }}mirrors.ustc.edu.cn/debian-security/ {{ VERSION }}-security main contrib non-free {% if VERSION == 'sid' or VERSION == 'bookworm' %}non-free-firmware{% endif %}
 {% endif %}{% endif %}
